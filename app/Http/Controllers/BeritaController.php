@@ -7,6 +7,11 @@ use App\Models\Berita;
 
 class BeritaController extends Controller
 {
+
+    public function home(Request $request) {
+        return view('home');
+    }
+
     public function senarai_berita(Request $request) {
         $beritas = Berita::all();
         return view('berita.senarai', compact('beritas'));
