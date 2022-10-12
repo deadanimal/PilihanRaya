@@ -36,8 +36,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('soalan/{id}/ya', [SoalanController::class, 'ya_soalan']);
     Route::get('soalan/{id}/tidak', [SoalanController::class, 'tidak_soalan']);
 
-    Route::get('tinjauan/{id}/ya', [TinjauanController::class, 'ya_tinjauan']);
-    Route::get('tinjauan/{id}/tidak', [TinjauanController::class, 'tidak_tinjauan']);
+    Route::get('tinjauan/{id}/ya', [TinjauanController::class, 'undi_ya']);
+    Route::get('tinjauan/{id}/tidak', [TinjauanController::class, 'undi_tidak']);
 
 });
 
