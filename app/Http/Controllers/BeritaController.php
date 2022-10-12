@@ -2,85 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreBeritaRequest;
-use App\Http\Requests\UpdateBeritaRequest;
+use Illuminate\Http\Request;
 use App\Models\Berita;
 
 class BeritaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function senarai_berita(Request $request) {
+        $beritas = Berita::all();
+        return view('berita.senarai', compact('beritas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function satu_berita(Request $request) {
+        $id = (int)$request->route('id');
+        $berita = Berita::find($id);
+
+        if ($req->user()) {
+            activity()
+            ->performedOn($berita)
+            ->causedBy($req->user())
+            ->log('Read');     
+        }
+        
+        return view('berita.satu', compact('berita'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreBeritaRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreBeritaRequest $request)
-    {
-        //
+    public function borang_berita(Request $request) {
+        return view('berita.borang');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Berita  $berita
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Berita $berita)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Berita  $berita
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Berita $berita)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateBeritaRequest  $request
-     * @param  \App\Models\Berita  $berita
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateBeritaRequest $request, Berita $berita)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Berita  $berita
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Berita $berita)
-    {
-        //
-    }
+    public function cipta_berita(Request $request) {
+        $berita = New Berita;
+        $berita->save();
+        return back();
+    }    
+    
 }

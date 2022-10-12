@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('partis', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('creator_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

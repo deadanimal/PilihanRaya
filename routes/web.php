@@ -2,23 +2,71 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\CalonController;
+use App\Http\Controllers\KawasanController;
+use App\Http\Controllers\PartiController;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('', [BeritaController::class, 'home']); 
+
+Route::get('berita', [BeritaController::class, 'senarai_berita']); 
+Route::get('berita/{id}', [BeritaController::class, 'satu_berita']); 
+
+Route::get('calon', [CalonController::class, 'senarai_calon']); 
+Route::get('calon/{id}', [CalonController::class, 'satu_calon']); 
+
+Route::get('kawasan', [KawasanController::class, 'senarai_kawasan']);  
+Route::get('kawasan/{id}', [KawasanController::class, 'satu_kawasan']);
+
+Route::get('parti', [PartiController::class, 'senarai_parti']); 
+Route::get('parti/{id}', [PartiController::class, 'satu_parti']);
+
+Route::get('promosi', [PromosiController::class, 'senarai_promosi']); 
+Route::get('promosi/{id}', [PromosiController::class, 'satu_promosi']);
+
+Route::get('soalan', [SoalanController::class, 'senarai_soalan']); 
+Route::get('soalan/{id}', [SoalanController::class, 'satu_soalan']);
+
+Route::get('tinjauan', [TinjauanController::class, 'senarai_tinjauan']); 
+Route::get('tinjauan/{id}', [TinjauanController::class, 'satu_tinjauan']);
+
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('soalan/{id}/ya', [SoalanController::class, 'ya_soalan']);
+    Route::get('soalan/{id}/tidak', [SoalanController::class, 'tidak_soalan']);
+
+    Route::get('tinjauan/{id}/ya', [TinjauanController::class, 'ya_tinjauan']);
+    Route::get('tinjauan/{id}/tidak', [TinjauanController::class, 'tidak_tinjauan']);
+
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['role:admin'])->group(function () {
+
+    Route::post('berita', [BeritaController::class, 'cipta_berita']); 
+    Route::post('calon', [CalonController::class, 'cipta_calon']); 
+    Route::post('kawasan', [KawasanController::class, 'cipta_kawasan']);
+    Route::post('parti', [PartiController::class, 'cipta_parti']); 
+    Route::post('promosi', [PromosiController::class, 'cipta_promosi']); 
+    Route::post('soalan', [SoalanController::class, 'cipta_soalan']); 
+    Route::post('tinjauan', [TinjauanController::class, 'cipta_tinjauan']); 
+
+    Route::put('berita/{id}', [BeritaController::class, 'ubah_berita']); 
+    Route::put('calon/{id}', [CalonController::class, 'ubah_calon']); 
+    Route::put('kawasan/{id}', [KawasanController::class, 'ubah_kawasan']);
+    Route::put('parti/{id}', [PartiController::class, 'ubah_parti']); 
+    Route::put('promosi/{id}', [PromosiController::class, 'ubah_promosi']); 
+    Route::put('soalan/{id}', [SoalanController::class, 'ubah_soalan']);    
+    Route::put('tinjauan/{id}', [TinjauanController::class, 'ubah_tinjauan']);  
+
+});
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';

@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('beritas', function (Blueprint $table) {
+        Schema::create('tinjauans', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->text('deskripsi');
             $table->foreignId('creator_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('beritas');
+        Schema::dropIfExists('tinjauans');
     }
 };

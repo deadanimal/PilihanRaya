@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('kawasans', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('jenis');
+            $table->foreignId('bapa_id')->nullable()->constrained('kawasans')->cascadeOnDelete();
+            $table->foreignId('creator_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }
