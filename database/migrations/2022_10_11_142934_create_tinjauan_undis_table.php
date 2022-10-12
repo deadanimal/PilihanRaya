@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tinjauan_undis', function (Blueprint $table) {
             $table->id();
-            $table->booleans('ya')->nullable();
+            $table->boolean('ya')->nullable();
             $table->foreignId('tinjauan_id')->nullable()->constrained('tinjauans')->cascadeOnDelete();
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->timestamps();
