@@ -1,1 +1,7 @@
-this is home
+@extends('layouts.app')
+
+
+
+@section('content')
+Home
+@endsection

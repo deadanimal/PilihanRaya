@@ -33,15 +33,29 @@ Route::get('tinjauan/{id}', [TinjauanController::class, 'satu_tinjauan']);
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('soalan/{id}/ya', [SoalanController::class, 'ya_soalan']);
-    Route::get('soalan/{id}/tidak', [SoalanController::class, 'tidak_soalan']);
+    Route::get('profile', [UserController::class, 'tunjuk_profile']);
+    Route::put('profile', [UserController::class, 'ubah_profile']);
+
+    Route::get('soalan/{id}/ya', [SoalanController::class, 'soalan_ya']);
+    Route::get('soalan/{id}/tidak', [SoalanController::class, 'soalan_tidak']);
 
     Route::get('tinjauan/{id}/ya', [TinjauanController::class, 'undi_ya']);
     Route::get('tinjauan/{id}/tidak', [TinjauanController::class, 'undi_tidak']);
 
 });
 
-Route::middleware(['role:admin'])->group(function () {
+Route::middleware(['role:admin'])->prefix('admin')->group(function () {
+
+    Route::get('user', [UserController::class, 'senarai_user']);
+    Route::get('user/{id}', [UserController::class, 'satu_user']);
+
+    Route::get('berita', [BeritaController::class, 'borang_berita']); 
+    Route::get('calon', [CalonController::class, 'borang_calon']); 
+    Route::get('kawasan', [KawasanController::class, 'borang_kawasan']);
+    Route::get('parti', [PartiController::class, 'borang_parti']); 
+    Route::get('promosi', [PromosiController::class, 'borang_promosi']); 
+    Route::get('soalan', [SoalanController::class, 'borang_soalan']); 
+    Route::get('tinjauan', [TinjauanController::class, 'borang_tinjauan']);     
 
     Route::post('berita', [BeritaController::class, 'cipta_berita']); 
     Route::post('calon', [CalonController::class, 'cipta_calon']); 
@@ -61,12 +75,5 @@ Route::middleware(['role:admin'])->group(function () {
 
 });
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
