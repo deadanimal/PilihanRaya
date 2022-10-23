@@ -6,10 +6,12 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\CalonController;
 use App\Http\Controllers\KawasanController;
 use App\Http\Controllers\PartiController;
+use App\Http\Controllers\TinjauanController;
 
 Route::get('', [BeritaController::class, 'home']); 
 
-Route::get('berita', [BeritaController::class, 'senarai_berita']); 
+Route::get('berita', [BeritaController::class, 'sekarang']); 
+Route::get('berita/senarai', [BeritaController::class, 'senarai_berita']); 
 Route::get('berita/{id}', [BeritaController::class, 'satu_berita']); 
 
 Route::get('calon', [CalonController::class, 'senarai_calon']); 
@@ -27,8 +29,9 @@ Route::get('promosi/{id}', [PromosiController::class, 'satu_promosi']);
 Route::get('soalan', [SoalanController::class, 'senarai_soalan']); 
 Route::get('soalan/{id}', [SoalanController::class, 'satu_soalan']);
 
-Route::get('tinjauan', [TinjauanController::class, 'senarai_tinjauan']); 
-Route::get('tinjauan/{id}', [TinjauanController::class, 'satu_tinjauan']);
+Route::get('tinjauan', [TinjauanController::class, 'rawak']); 
+Route::get('tinjauan/senarai', [TinjauanController::class, 'senarai']); 
+Route::get('tinjauan/{id}', [TinjauanController::class, 'satu']);
 
 
 Route::middleware(['auth'])->group(function () {

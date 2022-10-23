@@ -36,9 +36,9 @@ class TinjauanController extends Controller
         return back();
     }  
 
-    public function rawak_tinjauan(Request $request) {
+    public function rawak(Request $request) {
         $tinjauans = Tinjauan::all();
-        return view('tinjauan.senarai', compact('tinjauans'));        
+        return view('tinjauan.rawak', compact('tinjauans'));        
     }   
     
     public function undi_ya(Request $request) {

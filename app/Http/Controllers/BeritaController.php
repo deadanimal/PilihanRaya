@@ -12,6 +12,11 @@ class BeritaController extends Controller
         return view('home');
     }
 
+    public function sekarang(Request $request) {
+        $beritas = Berita::all();
+        return view('berita.sekarang', compact('beritas'));
+    }    
+
     public function senarai_berita(Request $request) {
         $beritas = Berita::all();
         return view('berita.senarai', compact('beritas'));
