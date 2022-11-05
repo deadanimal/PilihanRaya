@@ -9,7 +9,7 @@ use App\Http\Controllers\KawasanController;
 use App\Http\Controllers\PartiController;
 use App\Http\Controllers\TinjauanController;
 
-Route::get('', [BeritaController::class, 'home']); 
+Route::get('', [BeritaController::class, 'home'])->name('home'); 
 
 Route::get('berita', [BeritaController::class, 'sekarang']); 
 Route::get('berita/senarai', [BeritaController::class, 'senarai_berita']); 
