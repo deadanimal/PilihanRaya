@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\BorangController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\CalonController;
@@ -45,6 +45,21 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('tinjauan/{id}/ya', [TinjauanController::class, 'undi_ya']);
     Route::get('tinjauan/{id}/tidak', [TinjauanController::class, 'undi_tidak']);
+
+    Route::get('/billing-portal', function (Request $request) {
+        try {
+
+            return $request->user()->redirectToBillingPortal();
+          
+          } catch (\Exception $e) {
+          
+              if($e->getMessage() == 'User is not a Stripe customer yet. See the createAsStripeCustomer method.') {
+                $user = $request->user();
+                $user->createAsStripeCustomer();
+                return $user->redirectToBillingPortal();
+              }
+          }        
+    });    
 
 });
 
