@@ -9,7 +9,10 @@ class BeritaController extends Controller
 {
 
     public function home(Request $request) {
-        return view('home');
+        $beritaSatus = Berita::all();
+        return view('home', compact([
+            'beritaSatus'
+        ]));
     }
 
     public function sekarang(Request $request) {

@@ -9,6 +9,7 @@
     <meta name="author" content="Pipeline">
     <link href="https://pipeline.com.my/assets/img/pipe-favicon.png" rel="icon">
     <link href="https://pipeline.com.my/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
     <title>Undian</title>
 

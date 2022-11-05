@@ -1,39 +1,70 @@
 @extends('layouts.appOne')
 
+@section('style')
+<style>
+    #myElement {
+  background: silver;
+  height: 300px;
+  text-align: center;
+  font: 30px/300px Helvetica, Arial, sans-serif;
+}
+</style>
+@endsection
 
 
 @section('content')
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12 col-lg-6 col-lg-4">
+                <div class="card">
+                    <img class="card-img-top" src="img/photos/unsplash-2.jpg" alt="Unsplash">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Card with image and button</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+ 
 
-<div class="container mt-3">
-    <div class="row">
-        <div class="col-12 col-lg-6 col-lg-4">
-            <div class="card">
-                <img class="card-img-top" src="img/photos/unsplash-2.jpg" alt="Unsplash">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">Card with image and button</h5>
+                <div class="card" id="myElement">
+                    <img class="card-img-top" src="img/photos/unsplash-2.jpg" alt="Unsplash">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Card with image and button</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
+                <div></div>
+                
+
+
             </div>
+            @foreach ($beritaSatus as $berita)
+                <div class="col-12 col-lg-6 col-lg-4">
+                    <div class="card">
+                        <img class="card-img-top" src="img/photos/unsplash-2.jpg" alt="Unsplash">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Card with image and button</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                the
+                                card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
-        <div class="col-12 col-lg-6 col-lg-4">
-            <div class="card">
-                <img class="card-img-top" src="img/photos/unsplash-2.jpg" alt="Unsplash">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">Card with image and button</h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>               
     </div>
-</div>
 
     <section class="py-6">
         <div class="container">
@@ -274,11 +305,10 @@
             <div class="row">
                 <div class="col-lg-6 mx-auto">
                     <h2 class="mb-3">
-                        Join over 5,000+ developers who are already working with our products
+                        Do you want to win your constituents' hearts?
                     </h2>
-                    <a href="https://themes.getbootstrap.com/product/spark-responsive-admin-template/" target="_blank"
-                        class="align-middle btn btn-success btn-lg mt-n1">
-                        Purchase Now
+                    <a href="https://chatwith.io/s/my-undian" class="align-middle btn btn-success btn-lg mt-n1">
+                        Contact Us
                     </a>
                 </div>
             </div>
@@ -294,4 +324,17 @@
             </symbol>
         </defs>
     </svg>
+
+    <script type="text/javascript">
+var myElement = document.getElementById('myElement');
+
+// create a simple instance
+// by default, it only adds horizontal recognizers
+var mc = new Hammer(myElement);
+
+// listen to events...
+mc.on("panleft panright tap press", function(ev) {
+    myElement.textContent = ev.type +" gesture detected.";
+});
+    </script>
 @endsection

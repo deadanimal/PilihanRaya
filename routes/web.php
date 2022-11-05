@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\BorangController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\CalonController;
 use App\Http\Controllers\KawasanController;
@@ -48,6 +49,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['role:admin'])->prefix('admin')->group(function () {
+
+    Route::get('borang', [BorangController::class, 'senarai']);
 
     Route::get('user', [UserController::class, 'senarai_user']);
     Route::get('user/{id}', [UserController::class, 'satu_user']);
